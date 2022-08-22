@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view
 
 from .models import Worker
 from .serializers import (
-    WokerSerializer,
+    WorkerSerializer,
 )
 
 
