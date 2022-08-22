@@ -23,6 +23,8 @@ class Material(models.Model):
 class MaterialUsage(models.Model):
     measurement_method = models.ForeignKey(MeasurementMethod, on_delete=models.CASCADE)
     quantity = models.IntegerField()
+    price = models.IntegerField()
+    price_currency = models.CharField(max_length=10, default='UGX')
     material = models.ForeignKey(Material, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
