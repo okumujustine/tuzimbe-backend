@@ -11,7 +11,6 @@ from .models import (
 from .serializers import (
     MaterialSerializer,
     MaterialUsageSerializer,
-    AddMaterialUsageSerializer,
 )
 
 
@@ -24,7 +23,7 @@ def get_all_materials(request):
 
 @api_view(['POST'])
 def add_material_usage(request):
-    serializer = AddMaterialUsageSerializer(data=request.data)
+    serializer = MaterialUsageSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
 

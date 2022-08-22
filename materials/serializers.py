@@ -9,18 +9,18 @@ from .models import (
 class MeasurementMethodSerializer(serializers.ModelSerializer):
     class Meta:
         model = MeasurementMethod
-        fields = ('name',)
+        fields = "__all__"
 
 
 class MaterialSerializer(serializers.ModelSerializer):
     mesurements = MeasurementMethodSerializer(many=True, read_only=True)
     class Meta:
         model = Material
-        fields = ('name', 'created_at', 'mesurements',)
+        fields = "__all__"
 
 class MaterialUsageSerializer(serializers.ModelSerializer):
-    measurement_method=MeasurementMethodSerializer(read_only=True)
-    material=MaterialSerializer(read_only=True)
+    measurement_method=MeasurementMethodSerializer()
+    material=MaterialSerializer()
     class Meta:
         model = MaterialUsage
         fields = "__all__"
