@@ -6,3 +6,4 @@ class Worker(models.Model):
     last_name = models.CharField(max_length=200)
     main_daily_rate = models.IntegerField()
     main_rate_currency = models.CharField(max_length=10, default="UGX")
+    created_at = models.DateTimeField(auto_now_add=True)
