@@ -18,3 +18,14 @@ class Material(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class MaterialUsage(models.Model):
+    measurement_method = models.ForeignKey(MeasurementMethod, on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+    material = models.ForeignKey(Material, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.material}: {self.quantity}"
+
