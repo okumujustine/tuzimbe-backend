@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import (
     Material,
+    MaterialUsage,
     MeasurementMethod,
 )
 
@@ -18,4 +19,7 @@ class MaterialSerializer(serializers.ModelSerializer):
         fields = ('name', 'created_at', 'mesurements',)
 
 
-# class MaterialUsage(serializers.ModelSerializer):
+class MaterialUsageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MaterialUsage
+        fields = "__all__"

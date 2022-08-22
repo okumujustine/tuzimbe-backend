@@ -2,9 +2,13 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
-from .models import Worker
+from .models import (
+    Worker,
+    DailyWork,
+)
 from .serializers import (
     WorkerSerializer,
+    DailyWorkSerializer,
 )
 
 
@@ -22,4 +26,11 @@ def add_worker(request):
         serializer.save()
 
     return Response(serializer.data)
+
+
+@api_view(['GET'])
+def get_daily_works(request):
+    daily_works = DailyWork.objects.all()
+    serializer_daily_works = DailyWorkSerializer(daily_works, many=True)
+    return Response(serializer_daily_works.data)
 
