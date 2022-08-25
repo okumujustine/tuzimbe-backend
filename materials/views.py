@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from django_filters import rest_framework as filters
+from rest_framework import generics
 
 from .models import (
     Material,
@@ -11,6 +13,10 @@ from .models import (
 from .serializers import (
     MaterialSerializer,
     MaterialUsageSerializer,
+)
+
+from .filter import (
+    MaterialFilterSet,
 )
 
 
@@ -35,3 +41,9 @@ def get_all_material_usage(request):
     materials_usage = MaterialUsage.objects.all()
     serializer = MaterialUsageSerializer(materials_usage, many=True)
     return Response(serializer.data)
+
+
+class MaterialFilter(generics.ListAPIView):
+    queryset = Material.objects.all()
+    serializer_class = MaterialSerializer
+    filterset_class = MaterialFilterSet

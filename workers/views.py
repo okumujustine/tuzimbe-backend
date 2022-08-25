@@ -43,6 +43,5 @@ def get_daily_works(request):
 class WorkerFilter(generics.ListAPIView):
     queryset = Worker.objects.all()
     serializer_class = WorkerSerializer
-    filter_backends = (filters.DjangoFilterBackend,)
     filterset_class = WorkerFilterSet
 
