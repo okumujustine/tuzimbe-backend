@@ -8,4 +8,5 @@ urlpatterns = [
     path("add/", views.add_worker, name="add_worker"),
     path("daily_works/", views.get_daily_works, name="get_daily_works"),
     path("filter/", views.WorkerFilter.as_view(), name="filter_workers"),
+    path("attendance/", views.DailyAttendance.as_view(), name="attendance"),
 ]

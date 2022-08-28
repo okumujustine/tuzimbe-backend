@@ -12,8 +12,9 @@ from .serializers import (
     WorkerSerializer,
     DailyWorkSerializer,
 )
-from.filter import (
+from .filter import (
     WorkerFilterSet,
+    DailyAttendanceFilterSet,
 )
 
 
@@ -44,4 +45,11 @@ class WorkerFilter(generics.ListAPIView):
     queryset = Worker.objects.all()
     serializer_class = WorkerSerializer
     filterset_class = WorkerFilterSet
+
+
+
+class DailyAttendance(generics.ListAPIView):
+    queryset = DailyWork.objects.all()
+    serializer_class = DailyWorkSerializer
+    filterset_class = DailyAttendanceFilterSet
 

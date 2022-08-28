@@ -15,9 +15,10 @@ class Worker(models.Model):
 class DailyWork(models.Model):
     worker = models.ForeignKey(Worker, on_delete=models.CASCADE)
     arrival_time = models.DateTimeField()
-    departure_time = models.DateTimeField()
+    departure_time = models.DateTimeField(null=True, blank=True)
     daily_rate = models.IntegerField()
     daily_rate_currency = models.CharField(max_length=10, default="UGX")
+    added_date = models.DateField(auto_now_add=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
