@@ -3,6 +3,7 @@ from django_filters import rest_framework as filters
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import generics
+from rest_framework import status
 
 from .models import (
     Worker,
@@ -17,6 +18,27 @@ from .filter import (
     DailyAttendanceFilterSet,
 )
 
+
+@api_view(['POST'])
+def add_daily_worker(request):
+    obj = DailyWork.objects.filter(
+        worker_id=request.data["worker"],
+        added_date=request.data["added_date"]
+    ).first()
+
+    if obj:
+        return Response("User already added to attendance list",status=status.HTTP_400_BAD_REQUEST)
+
+    try:
+        d_w = DailyWork.objects.create(
+            worker_id=request.data["worker"],
+            arrival_time=request.data["arrival_time"],
+            daily_rate=request.data["daily_rate"]
+        )
+        serializer = DailyWorkSerializer(d_w)
+        return Response(serializer.data)
+    except:
+          return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
 def get_all_workers(request):

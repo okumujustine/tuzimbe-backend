@@ -1,6 +1,7 @@
 from django_filters import rest_framework as filters
 from .models import (
     Material,
+    MaterialUsage,
 )
 
 class MaterialFilterSet(filters.FilterSet):
@@ -9,4 +10,12 @@ class MaterialFilterSet(filters.FilterSet):
         model = Material
         fields= {
             "name":["icontains"],
+        }
+
+
+class MaterialUsageFilterSet(filters.FilterSet):
+    class Meta:
+        model = MaterialUsage
+        fields = {
+            'added_date': ['iexact'],
         }

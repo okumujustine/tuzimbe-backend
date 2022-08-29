@@ -26,6 +26,7 @@ class MaterialUsage(models.Model):
     price = models.IntegerField()
     price_currency = models.CharField(max_length=10, default='UGX')
     material = models.ForeignKey(Material, on_delete=models.CASCADE)
+    added_date = models.DateField(auto_now_add=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

@@ -8,4 +8,5 @@ urlpatterns = [
     path("add_usage/", views.add_material_usage, name="add_material_usage"),
     path("all_material_usage/", views.get_all_material_usage, name="get_all_material_usage"),
     path("filter/", views.MaterialFilter.as_view(), name="filter_materials"),
+    path("material_usage", views.MaterialUsageView.as_view(), name="material_usage")
 ]

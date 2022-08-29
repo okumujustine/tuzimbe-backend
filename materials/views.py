@@ -17,6 +17,7 @@ from .serializers import (
 
 from .filter import (
     MaterialFilterSet,
+    MaterialUsageFilterSet,
 )
 
 
@@ -47,3 +48,8 @@ class MaterialFilter(generics.ListAPIView):
     queryset = Material.objects.all()
     serializer_class = MaterialSerializer
     filterset_class = MaterialFilterSet
+
+class MaterialUsageView(generics.ListAPIView):
+    queryset = MaterialUsage.objects.all()
+    serializer_class = MaterialUsageSerializer
+    filterset_class = MaterialUsageFilterSet

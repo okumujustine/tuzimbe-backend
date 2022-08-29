@@ -10,7 +10,7 @@ class WorkerSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 class DailyWorkSerializer(serializers.ModelSerializer):
-    worker = WorkerSerializer(read_only=True)
+    worker = WorkerSerializer()
     class Meta:
         model = DailyWork
         fields = "__all__"
