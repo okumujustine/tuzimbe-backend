@@ -62,6 +62,15 @@ def get_daily_works(request):
     serializer_daily_works = DailyWorkSerializer(daily_works, many=True)
     return Response(serializer_daily_works.data)
 
+@api_view(['POST'])
+def set_departure_time(request):
+    departure_time = request.data["departure_time"]
+    attendence_pk = request.data["attendence_pk"]
+    att = DailyWork.objects.get(pk=attendence_pk)
+    att.departure_time = departure_time
+    att.save()
+    return Response({"set":"true"})
+
 
 class WorkerFilter(generics.ListAPIView):
     queryset = Worker.objects.all()

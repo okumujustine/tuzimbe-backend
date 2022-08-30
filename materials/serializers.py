@@ -13,7 +13,7 @@ class MeasurementMethodSerializer(serializers.ModelSerializer):
 
 
 class MaterialSerializer(serializers.ModelSerializer):
-    mesurements = MeasurementMethodSerializer(many=True, read_only=True)
+    mesurements = MeasurementMethodSerializer(many=True)
     class Meta:
         model = Material
         fields = "__all__"
@@ -30,9 +30,16 @@ class AddMaterialUsageSerializer(serializers.ModelSerializer):
         model = MaterialUsage
         fields = "__all__"
 
+
+class MeasurementMethodSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MeasurementMethod
+        fields = "__all__"
+
+
 # {
-# "measurement_method":2,
-# "quantity":2,
-# "price":36000,
-# "material":3
+# "measurement_method":4,
+# "quantity":1,
+# "price":3600000,
+# "material":2
 # }
