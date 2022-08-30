@@ -17,13 +17,6 @@ class MaterialFilterSet(filters.FilterSet):
 class MaterialUsageFilterSet(filters.FilterSet):
     class Meta:
         model = MaterialUsage
-        fields=[]
-        # fields = {
-        #     'added_date': ['iexact'],
-        # }
-
-    @property
-    def qs(self):
-        parent = super().qs
-        print(parent.annotate(sum=Sum("price")))
-        return parent
+        fields = {
+            'added_date': ['iexact'],
+        }

@@ -67,16 +67,28 @@ class MaterialUsageView(generics.ListAPIView):
 
 @api_view(['GET'])
 def material_usage_filter(request):
-    cc = MaterialUsage.objects.filter(
-        added_date="2022-08-29"
+    print(request.data)
+    if "start_date" in request.GET and "end_date" in request.GET:
+        start_date = request.GET["start_date"]
+        end_date = request.GET["end_date"]
+        cc = MaterialUsage.objects.filter(
+        added_date__range=[start_date, end_date]
         ).values(
-            'material',
-            'measurement_method',
+            'material_id',
             'measurement_method__name',
             'material__name'
-        ).order_by().annotate(total_price=Sum('price'))
-    summations = [sums for sums in cc]
-    return Response(summations)
+        ).order_by().annotate(total_price=Sum('price'), total_quantity=Sum('quantity'))
+        summations = [sums for sums in cc]
+        return Response(summations)
+
+    else:
+        cc = MaterialUsage.objects.all().values(
+                'material_id',
+                'measurement_method__name',
+                'material__name'
+            ).order_by().annotate(total_price=Sum('price'), total_quantity=Sum('quantity'))
+        summations = [sums for sums in cc]
+        return Response(summations)
 
 @api_view(['POST'])
 def add_material(request):
